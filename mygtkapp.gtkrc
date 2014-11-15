@@ -1,0 +1,15 @@
+# Sets styles for GTK widgets, i.e. font sizes for buttons, labels, etc.,
+# colors and keybindings
+#
+# See http://www.gtk.org/api/2.6/gtk/gtk-Resource-Files.html for a reference
+# of the GTK resource file format governing this file or the somewhat gentler
+# "Gtk Theme Creation Guide" at http://orford.org/gtk/#general_widget_properties.
+#
+
+style "big-font" {
+    font_name = "Ubuntu 18"
+}
+
+style "normal-font" {
+    font_name = "Ubuntu 10"
+}
