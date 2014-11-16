@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """Template for a PyGTK application based on a GtkBuilder GUI file."""
 
@@ -17,13 +17,8 @@ import os
 import sys
 import time
 
+from ConfigParser import RawConfigParser
 from os.path import abspath, dirname, expanduser, exists, join
-
-try:
-    # Python 3
-    from configparser import RawConfigParser
-except ImportError:
-    from ConfigParser import RawConfigParser
 
 # Third-party packages imports
 import pygtk
@@ -39,6 +34,7 @@ img_dir = join(res_dir, 'img')
 ui_dir = join(res_dir, 'ui')
 
 sys.path.insert(0, lib_dir)
+# put imports from modules/packages located in ./lib here
 
 
 # global constants
@@ -135,9 +131,15 @@ class MyGtkApp(object):
         self.aboutdialog.show()
 
     def on_aboutdialog_response(self, widget, response):
-        """Handler for the close button of the about dialog."""
-        if response in (gtk.RESPONSE_OK, gtk.RESPONSE_CANCEL):
-            self.aboutdialog.hide()
+        """Handler for the close button of the about dialog.
+
+        Make sure you connect this handler to the GtkDialog:cancel,
+        GtkDialog:response, GtkWidget:delete and GtkWidget:destroy signals
+        (in the Glade properties/signals dialog of the GtkAboutDialog).
+
+        """
+        self.aboutdialog.hide()
+        return True
 
     def set_time(self):
         """Set date and time in status bar.
@@ -205,8 +207,10 @@ def main(args=None):
     Returns integer exit code or None.
 
     """
-    argparser = argparse.ArgumentParser(usage=__usage__,
-        description=__doc__.splitlines()[0], version=__version__)
+    argparser = argparse.ArgumentParser(usage=__usage__, prog=__app_name__,
+        description=__doc__.splitlines()[0])
+    argparser.add_argument('-V', '--version', action='version',
+        version='%%(prog)s %s' % __version__)
     argparser.add_argument('-d', '--debug',
         dest="debug", action="store_true",
         help="Enable debug logging")
