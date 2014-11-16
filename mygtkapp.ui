@@ -15,6 +15,9 @@
     <property name="website_label" translatable="yes">Homepage</property>
     <property name="license" translatable="yes">MIT License</property>
     <property name="authors">Christopher Arndt</property>
+    <signal name="close" handler="on_aboutdialog_response" swapped="no"/>
+    <signal name="destroy-event" handler="on_aboutdialog_response" swapped="no"/>
+    <signal name="delete-event" handler="on_aboutdialog_response" swapped="no"/>
     <signal name="response" handler="on_aboutdialog_response" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="aboutdialog_vbox">
