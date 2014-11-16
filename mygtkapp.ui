@@ -10,7 +10,8 @@
     <property name="program_name">MyGtkApp</property>
     <property name="version">0.1</property>
     <property name="copyright" translatable="yes">© 2014 chrisarndt.de</property>
-    <property name="comments" translatable="yes">A basic template for a PyGTK application</property>
+    <property name="comments" translatable="yes">A basic template for a GTK+ 2.x application
+implemented with PyGTK</property>
     <property name="website">http://chrisarndt.de/projects/pygtk-app-template</property>
     <property name="website_label" translatable="yes">Homepage</property>
     <property name="license" translatable="yes">MIT License</property>

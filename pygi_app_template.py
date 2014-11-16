@@ -87,6 +87,9 @@ class MyGtkApp(object):
         self.aboutdialog = self.ui.get_object('aboutdialog')
         self.aboutdialog.set_name(__app_name__)
         self.aboutdialog.set_version(__version__)
+        self.aboutdialog.set_comments(
+            self.aboutdialog.get_comments().replace(
+                "2.x", "3.x").replace("PyGTK", "Python GObject"))
 
         # parse Gtk+ RC file
         rc_file = expanduser(self.config.get('rc_file', GTKRC_FILENAME))
