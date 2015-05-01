@@ -179,7 +179,7 @@ def parse_config(filename, section="general"):
     """Read INI-style config file and return options dict of given section."""
     cfg = RawConfigParser()
     cfg.read(filename)
-    if cfg.has_section('general'):
+    if cfg.has_section(section):
         return dict(cfg.items(section))
     else:
         return {}
