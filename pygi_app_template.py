@@ -42,7 +42,7 @@ sys.path.insert(0, lib_dir)
 
 
 # global constants
-__app_name__ = "MyGtkApp"
+__app_name__ = "MyGtk3App"
 __author__   = "$Author$"
 __version__  = "0.1"
 __date__     = "$Date$"
@@ -66,8 +66,8 @@ class MyGtkApp(object):
         """Constructor.
 
         Reads the GUI definition from the GtkBuilder file and creates the GUI,
-        registers event handlers and starts periodic task to update dynamic GUI
-        elements.
+        registers event handlers and starts periodic tasks to update dynamic
+        GUI elements.
 
         """
         self.config = config
@@ -79,6 +79,7 @@ class MyGtkApp(object):
             ui_file = join(ui_dir, ui_file)
 
         self.ui = gtk.Builder()
+        log.debug("Loading UI definition from '%s'.", ui_file)
         self.ui.add_from_file(ui_file)
         self.window = self.ui.get_object('mainwin')
         self.window.connect("destroy", self.quit)
@@ -221,7 +222,6 @@ class MyGtkApp(object):
                 widget.set_text(value)
 
 
-
 def parse_config(filename, section="general"):
     """Read INI-style config file and return options dict of given section."""
     cfg = RawConfigParser()
@@ -230,6 +230,7 @@ def parse_config(filename, section="general"):
         return dict(cfg.items(section))
     else:
         return {}
+
 
 def setup_logging(config):
     """Configure logger instance using settings from configuration."""
@@ -242,7 +243,6 @@ def setup_logging(config):
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     log_handler.setFormatter(log_formatter)
     log.addHandler(log_handler)
-
 
 
 def main(args=None):
